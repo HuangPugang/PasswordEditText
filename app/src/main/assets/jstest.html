@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+            <title>JavascriptBridge Demo</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+                
+                <script type="text/javascript" src="./hxsjssdk_1.0.js"></script>
+    </head>
+    
+    <body bgcolor="#f5f5dc">
+        <h1>
+            JavascriptBridge Demo
+        </h1>
+        <script type="text/javascript">
+
+            function pushViewWithUrlAndTitle() {
+                var url_input = document.getElementsByName('push_url')[0];
+                var title_input = document.getElementsByName('push_title')[0];
+                HXSJSBridge.pushViewWithUrlAndTitle(url_input.value, title_input.value);
+            }
+
+            function needUserLogin() {
+                HXSJSBridge.needUserLogin(function(data) {
+                    alert(data)
+                });
+            }
+
+            function openOrderListView() {
+                HXSJSBridge.openOrderListView('8')
+            }
+
+            function payWithTypeAndParam(type, param) {
+                HXSJSBridge.payWithTypeAndParam(type, param)
+            }
+
+            function openRouter() {
+                var input = document.getElementsByName('router')[0];
+                HXSJSBridge.openRouter(input.value);
+            }
+
+            function closeCurrentView() {
+                HXSJSBridge.closeCurrentView();
+            }
+
+            function pushMyCouponView() {
+                HXSJSBridge.pushMyCouponView();
+            }
+
+            function openCreditCardView() {
+                HXSJSBridge.openCreditCardView();
+            }
+
+            function openFindPayPasswordView() {
+                HXSJSBridge.openFindPayPasswordView();
+            }
+
+            function openCreditPayView() {
+                HXSJSBridge.openCreditPayView();
+            }
+
+            function previewImages() {
+                HXSJSBridge.previewImages({
+                    current: 1,
+                    images: ['http://community-59store.img-cn-hangzhou.aliyuncs.com/d6f0d861fc224637b16c596cb1e89d7d.jpg', 'http://community-59store.img-cn-hangzhou.aliyuncs.com/3745f5fe2c32437d8281cc1141961a16.jpg', 'http://community-59store.img-cn-hangzhou.aliyuncs.com/0dfc74e5e6a44435a3bd69e4d547e5e7.jpg']
+                });
+            }
+            
+            function openNewWindow() {
+                window.location.href = 'js_bridge_demo.html';
+            }
+            
+        </script>
+        <script type="text/javascript">
+            function setNavigationButton() {
+                var nav_type = document.getElementsByName('nav_type')[0];
+                var nav_title = document.getElementsByName('nav_title')[0];
+                var nav_image = document.getElementsByName('nav_image')[0];
+                var nav_link = document.getElementsByName('nav_link')[0];
+                HXSJSBridge.setNavigationButton({
+                                                type:nav_type.value,
+                                                title:nav_title.value,
+                                                image:nav_image.value,
+                                                link:nav_link.value
+                                                });
+            }
+        
+        function setShareInfo() {
+            HXSJSBridge.setShareInfo({
+                                     type:[1,2,3,4],
+                                     title:'分享标题',
+                                     content:'分享内容',
+                                     image:'http://static.59store.com/app/download/dorm/img_59logo.png',
+                                     link:'http://www.baidu.com'
+                                     });
+        }
+        
+            </script>
+
+        <hr>
+        <form>
+            Router url：
+            <br>
+            <input type="text" name="router" value="hxstore://shop/detail?shop_id=1&shop_type=0" style="width: 200px">
+        </form>
+
+        <button onclick="openRouter()">
+            使用router打开页面openRouter
+        </button>
+        <br />
+        <hr>
+        <br />
+        <form>
+            Url：
+            <br>
+            <input type="text" name="push_url" value="http://www.59store.com" style="width: 200px">
+            <br>
+            Title:
+            <br>
+            <input type="text" name="push_title" value="59store" style="width: 200px">
+        </form>
+        <button onclick="pushViewWithUrlAndTitle()">
+            新页面打开url
+        </button>
+        <br />
+        <hr>
+        <br />
+        <button onclick="needUserLogin()">
+            检查用户是否登录，未登录跳转登陆页
+        </button>
+        <br />
+        <hr>
+        <br />
+        <button onclick="openOrderListView()">
+            打开订单列表页
+        </button>
+        <br />
+        <hr>
+        <br />
+        <button onclick="payWithTypeAndParam('1', JSON.stringify({'order_sn':'123456789', 'type':4, 'type_name':'夜猫店', 'attach':'http://yemao.59store.com/payment/notify', 'order_amount':8.5}))">
+            支付宝支付
+        </button>
+        <br />
+        <hr>
+        <br />
+        <button onclick="payWithTypeAndParam('2', JSON.stringify({'order_sn':'123456789', 'type':4, 'type_name':'夜猫店', 'attach':'http://yemao.59store.com/payment/notify', 'order_amount':8.5}))">
+            微信支付
+        </button>
+        <br />
+        <hr>
+        <br />
+        <button onclick="closeCurrentView()">
+            关闭当前页面
+        </button>
+        <br />
+        <hr>
+        <br />
+        <button onclick="pushMyCouponView()">
+            跳转我的优惠券页面
+        </button>
+        <br />
+        <hr>
+        <br />
+        <button onclick="openCreditCardView()">
+            跳转花不完首页
+        </button>
+        <br />
+        <hr>
+        <br />
+        <button onclick="openFindPayPasswordView()">
+            跳转找回密码页面
+        </button>
+        <br />
+        <hr>
+        <br />
+        <button onclick="openCreditPayView()">
+            跳转我的钱包首页
+        </button>
+        <br />
+        <hr>
+        <br />
+        <button onclick="previewImages()">
+            浏览图片
+        </button>
+        <br />
+        <hr>
+        <br />
+        <form>
+            Type:
+            <select name="nav_type">
+                <option value="share">share</option>
+                <option value="refresh" selected="true">refresh</option>
+                <option value="normal">normal</option>
+            </select>
+            <br>
+            Title：
+            <br>
+            <input type="text" name="nav_title" value="刷新" style="width: 200px">
+            <br>
+            Image:
+            <br>
+            <input type="text" name="nav_image" value="http://static.59store.com/app/creditcard/ic_dingdan_jiudian.png" style="width: 200px">
+            <br>
+            Link:
+            <br>
+            <input type="text" name="nav_link" value="http://www.59store.com" style="width: 200px">
+        </form>
+        <button onclick="setNavigationButton()">
+            设置导航栏按钮
+        </button>
+        <br />
+        <hr>
+        <br />
+        <button onclick="setShareInfo()">
+            设置分享的内容
+        </button>
+
+        <br />
+        <hr>
+        <br />
+        <button onclick="openNewWindow()">
+            window.href
+        </button>
+
+        <br />
+        <hr>
+        <br />
+        <a href="javascript:HXSJSBridge.openOrderListView(9);">href打开订单详情</a>
+        <br />
+        <br />
+        <a href="hxdorm://dormapp.59store.com/">启动店长app</a>
+        <br />
+        <br />
+        <a href="http://app.59store.com/app/download/">启动用户app或者下载app</a>
+        <br />
+        <br />
+        <a href="http://dormapp.59store.com/app/download/">启动店长app或者下载app</a>
+        <div id="rets">
+        </div>
+    </body>
+    
+</html>
